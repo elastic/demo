@@ -12,12 +12,50 @@ auditbeat.modules:
   - C:/Program Files
   - C:/Program Files (x86)
   - C:/ProgramData
+  - C:/autoexec.bat
+  - C:/boot.ini
+  - C:/config.sys
+  - C:/windows/system.ini
+  - C:/windows/win.ini
+  - C:/windows/regedit.exe
+  - C:/windows/System32/userinit.exe
+  - C:/windows/explorer.exe
+  - C:/ProgramFiles/Microsoft Security Client/msseces.exe
+  - HKLM/SOFTWARE/Microsoft/Cryptography/OID/EncodingType 0/CryptSIPDllRemoveSignedDataMsg{C689AAB8-8E78-11D0-8C47-00C04FC295EE}
+  - HKLM/SOFTWARE/Microsoft/Cryptography/OID/EncodingType 0/CryptSIPDllRemoveSignedDataMsg{603BCC1F-4B59-4E08-B724-D2C6297EF351}
+  - HKLM/SOFTWARE/Microsoft/Windows NT/CurrentVersion/IniFileMapping/SYSTEM.ini/boot
+  - HKLM/SOFTWARE/Microsoft/Windows NT/CurrentVersion/Windows
+  - HKLM/SOFTWARE/Microsoft/Windows NT/CurrentVersion/Winlogon
+  - HKLM/SOFTWARE/Microsoft/Windows/CurrentVersion/Explorer/Shell Folders
+  - HKLM/SOFTWARE/Microsoft/Windows/CurrentVersion/Explorer/User Shell Folders
+  - HKLM/SOFTWARE/Microsoft/Windows/CurrentVersion/Run
+  - HKLM/SOFTWARE/Microsoft/Windows/CurrentVersion/RunOnce
+  - HKLM/SOFTWARE/Microsoft/Windows/CurrentVersion/RunOnceEx
+  - HKLM/SOFTWARE/Microsoft/Windows/CurrentVersion/RunServices
+  - HKLM/SOFTWARE/Microsoft/Windows/CurrentVersion/RunServicesOnce
+  - HKLM/SOFTWARE/WOW6432Node/Microsoft/Cryptography/OID/EncodingType 0/CryptSIPDllRemoveSignedDataMsg{C689AAB8-8E78-11D0-8C47-00C04FC295EE}
+  - HKLM/SOFTWARE/WOW6432Node/Microsoft/Cryptography/OID/EncodingType 0/CryptSIPDllRemoveSignedDataMsg{603BCC1F-4B59-4E08-B724-D2C6297EF351}
+  - HKLM/SOFTWARE/WOW6432Node/Microsoft/Windows NT/CurrentVersion/IniFileMapping/system.ini/boot
+  - HKLM/SOFTWARE/WOW6432Node/Microsoft/Windows NT/CurrentVersion/Windows
+  - HKLM/SOFTWARE/WOW6432Node/Microsoft/Windows NT/CurrentVersion/Winlogon
+  - HKLM/SOFTWARE/WOW6432Node/Microsoft/Windows/CurrentVersion/Explorer/Shell Folders
+  - HKLM/SOFTWARE/WOW6432Node/Microsoft/Windows/CurrentVersion/Explorer/User Shell Folders
+  - HKLM/SOFTWARE/WOW6432Node/Microsoft/Windows/CurrentVersion/Run
+  - HKLM/SOFTWARE/WOW6432Node/Microsoft/Windows/CurrentVersion/RunOnce
+  - HKLM/SOFTWARE/WOW6432Node/Microsoft/Windows/CurrentVersion/RunOnceEx
+  - HKLM/SOFTWARE/WOW6432Node/Microsoft/Windows/CurrentVersion/RunServices
+  - HKLM/SOFTWARE/WOW6432Node/Microsoft/Windows/CurrentVersion/RunServicesOnce
+  - HKLM/SYSTEM/CurrentControlSet/Control/hivelist
+  - HKLM/SYSTEM/CurrentControlSet/Control/Session Manager/KnownDLLs
+  - HKLM/SYSTEM/CurrentControlSet/Services/SharedAccess/Parameters/FirewallPolicy/DomainProfile
+  - HKLM/SYSTEM/CurrentControlSet/Services/SharedAccess/Parameters/FirewallPolicy/PublicProfile
+  - HKLM/SYSTEM/CurrentControlSet/Services/SharedAccess/Parameters/FirewallPolicy/StandardProfile
 
 - module: system
   datasets:
     - host
   state.period: 12h
-  period: 1h
+  period: 1m
 
 - module: system
   datasets:
@@ -26,7 +64,7 @@ auditbeat.modules:
     - add_process_metadata:
         match_pids: [process.ppid]
         target: system.process.parent
-  period: 3m
+  period: 1s
 
 #=== Auditbeat logging ===
 # Configure logging for Auditbeat if you plan on using the GeoIP ingest processor
